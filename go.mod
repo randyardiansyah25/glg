@@ -1,4 +1,4 @@
-module github.com/kpango/glg
+module github.com/randyardiansyah25/glg
 
 go 1.21.1
 

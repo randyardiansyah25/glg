@@ -893,6 +893,10 @@ func White(str string) string {
 }
 
 func (g *Glg) out(level LEVEL, format string, val ...interface{}) error {
+	return g.outC(fastime.FormattedNow(), level, format, val...)
+}
+
+func (g *Glg) outC(userTimestamp []byte, level LEVEL, format string, val ...interface{}) error {
 	log, ok := g.logger.Load(level)
 	if !ok {
 		return fmt.Errorf("error:\tLog Level %d Not Found", level)
@@ -970,7 +974,7 @@ func (g *Glg) out(level LEVEL, format string, val ...interface{}) error {
 		}
 		var timestamp string
 		if !log.disableTimestamp {
-			fn := fastime.FormattedNow()
+			fn := userTimestamp
 			timestamp = *(*string)(unsafe.Pointer(&fn))
 		}
 		return json.NewEncoder(w).Encode(JSONFormat{
@@ -990,7 +994,7 @@ func (g *Glg) out(level LEVEL, format string, val ...interface{}) error {
 	if log.disableTimestamp {
 		b.Write(log.rawtag[len(tab):])
 	} else {
-		b.Write(fastime.FormattedNow())
+		b.Write(userTimestamp)
 		b.Write(log.rawtag)
 	}
 	if len(fl) != 0 {

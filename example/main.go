@@ -10,7 +10,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/kpango/glg"
+	"github.com/randyardiansyah25/glg"
 )
 
 var dummyObject = struct {
