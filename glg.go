@@ -1259,6 +1259,11 @@ func (g *Glg) CustomTimestampLog(timestamp []byte, level string, val ...interfac
 	return g.outC(timestamp, g.TagStringToLevel(level), g.blankFormat(len(val)), val...)
 }
 
+// Custom log with user timestamp
+func CustomTimestampLog(timestamp []byte, level string, val ...interface{}) error {
+	return glg.outC(timestamp, glg.TagStringToLevel(level), glg.blankFormat(len(val)), val...)
+}
+
 // Trace outputs Trace level log
 func (g *Glg) Trace(val ...interface{}) error {
 	return g.out(TRACE, g.blankFormat(len(val)), val...)
