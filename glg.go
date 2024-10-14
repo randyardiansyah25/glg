@@ -842,54 +842,58 @@ func Colorless(str string) string {
 	return str
 }
 
+func colorString(code, str string) string {
+	return "\033["+code+"m" + str + "\033[39m"
+}
+
 // Red returns red colored string
 func Red(str string) string {
-	return "\033[31m" + str + "\033[39m"
+	return colorString("31", str)
 }
 
 // Green returns green colored string
 func Green(str string) string {
-	return "\033[32m" + str + "\033[39m"
+	return colorString("32", str)
 }
 
 // Orange returns orange colored string
 func Orange(str string) string {
-	return "\033[33m" + str + "\033[39m"
+	return colorString("33", str)
 }
 
 // Purple returns purple colored string
 func Purple(str string) string {
-	return "\033[34m" + str + "\033[39m"
+	return colorString("34", str)
 }
 
 // Cyan returns cyan colored string
 func Cyan(str string) string {
-	return "\033[36m" + str + "\033[39m"
+	return colorString("36", str)
 }
 
 // Yellow returns yellow colored string
 func Yellow(str string) string {
-	return "\033[93m" + str + "\033[39m"
+	return colorString("93", str)
 }
 
 // Brown returns Brown colored string
 func Brown(str string) string {
-	return "\033[96m" + str + "\033[39m"
+	return colorString("96", str)
 }
 
 // Gray returns Gray colored string
 func Gray(str string) string {
-	return "\033[90m" + str + "\033[39m"
+	return colorString("90", str)
 }
 
 // Black returns Black colored string
 func Black(str string) string {
-	return "\033[30m" + str + "\033[39m"
+	return colorString("30", str)
 }
 
 // White returns white colored string
 func White(str string) string {
-	return "\033[97m" + str + "\033[39m"
+	return colorString("97", str)
 }
 
 func (g *Glg) out(level LEVEL, format string, val ...interface{}) error {
